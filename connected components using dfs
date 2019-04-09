@@ -1,0 +1,37 @@
+#include<stdio.h>
+int g[100][100],visited[100],n,a;
+int count;
+void dfs(int i)
+{
+	int j;
+	count++;
+	visited[i]=1;
+	for(j=0;j<n;j++)
+		if(!visited[j]&&g[i][j]==1)
+			dfs(j);
+}
+int main()
+{
+	int i,j;
+	printf("enter the number of rows ");
+	scanf("%d",&n);
+	printf("enter the adjacency matrix ");
+	for(i=0;i<n;i++)
+		for(j=0;j<n;j++)
+			scanf("%d",&g[i][j]);
+	for(i=0;i<n;i++)
+		visited[i]=0;
+	while(count<n)
+	{
+		for(i=0;i<n;i++)
+		{
+			if(visited[i]==0)
+			{
+				a++;
+				dfs(i);
+			}
+		}
+		printf("\n\nnumber of connected components are %d\n",a);
+	}
+	return 0;
+}
